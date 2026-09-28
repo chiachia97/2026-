@@ -1,0 +1,1092 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2026 九州家族旅遊 ✈️✨</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700;800&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-color: #FF9EAA;
+            --primary-dark: #FF7083;
+            --secondary-color: #3AA6B9;
+            --accent-yellow: #FFD966;
+            --bg-color: #FFF9F2;
+            --card-bg: #FFFFFF;
+            --text-color: #4A4A4A;
+            --text-muted: #888888;
+            --border-radius: 20px;
+            --shadow: 0 8px 20px rgba(255, 158, 170, 0.15);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'M PLUS Rounded 1c', 'Noto Sans TC', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            padding-bottom: 80px;
+        }
+
+        /* Banner */
+        .hero-banner {
+            background: linear-gradient(135deg, #FF9EAA, #FFD966);
+            color: white;
+            padding: 30px 20px 20px;
+            text-align: center;
+            border-bottom-left-radius: 30px;
+            border-bottom-right-radius: 30px;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-banner h1 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 5px;
+            text-shadow: 2px 2px 0px rgba(0,0,0,0.1);
+        }
+
+        .hero-banner p {
+            font-size: 1rem;
+            background: rgba(255, 255, 255, 0.25);
+            display: inline-block;
+            padding: 4px 15px;
+            border-radius: 15px;
+            backdrop-filter: blur(5px);
+        }
+
+        /* Navigation Tabs */
+        .nav-tabs {
+            display: flex;
+            justify-content: space-around;
+            background: var(--card-bg);
+            margin: 15px;
+            padding: 8px;
+            border-radius: 25px;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 10px;
+            z-index: 100;
+        }
+
+        .tab-btn {
+            border: none;
+            background: none;
+            padding: 10px 12px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            border-radius: 18px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .tab-btn.active {
+            background: var(--primary-color);
+            color: white;
+            box-shadow: 0 4px 10px rgba(255, 158, 170, 0.4);
+        }
+
+        /* Container */
+        .container {
+            padding: 0 15px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.4s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Day Selector Pill */
+        .day-selector {
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            padding: 10px 5px;
+            margin-bottom: 15px;
+            scrollbar-width: none;
+        }
+
+        .day-selector::-webkit-scrollbar {
+            display: none;
+        }
+
+        .day-pill {
+            flex: 0 0 auto;
+            padding: 8px 16px;
+            background: var(--card-bg);
+            border: 2px solid #FFE3E1;
+            border-radius: 15px;
+            font-weight: 700;
+            color: var(--text-color);
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .day-pill.active {
+            background: var(--secondary-color);
+            color: white;
+            border-color: var(--secondary-color);
+        }
+
+        /* Timeline Styles */
+        .timeline {
+            position: relative;
+            padding-left: 20px;
+            margin-left: 10px;
+            border-left: 3px dashed var(--primary-color);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .timeline-item::before {
+            content: '📌';
+            position: absolute;
+            left: -32px;
+            top: 10px;
+            background: var(--bg-color);
+            border-radius: 50%;
+            font-size: 1.1rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 15px;
+            box-shadow: var(--shadow);
+            border: 2px solid #FFF0F2;
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .time-badge {
+            background: var(--accent-yellow);
+            color: #6B4F00;
+            font-weight: 800;
+            padding: 4px 10px;
+            border-radius: 10px;
+            font-size: 0.85rem;
+        }
+
+        .location-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text-color);
+            margin: 5px 0;
+        }
+
+        .card-body {
+            font-size: 0.95rem;
+            color: #555;
+            line-height: 1.5;
+        }
+
+        .card-body ul {
+            list-style: none;
+            margin-top: 5px;
+        }
+
+        .card-body li {
+            position: relative;
+            padding-left: 18px;
+            margin-bottom: 4px;
+        }
+
+        .card-body li::before {
+            content: '•';
+            color: var(--primary-color);
+            font-weight: bold;
+            font-size: 1.2rem;
+            position: absolute;
+            left: 0;
+            top: -2px;
+        }
+
+        .photo-placeholder {
+            width: 100%;
+            height: 150px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 12px;
+            margin: 10px 0;
+            display: flex;
+            align-items: flex-end;
+            padding: 8px;
+            color: white;
+            font-weight: bold;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.6);
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .btn-map, .btn-nav {
+            flex: 1;
+            padding: 8px;
+            border: none;
+            border-radius: 10px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-decoration: none;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            cursor: pointer;
+        }
+
+        .btn-map {
+            background-color: #E8F5E9;
+            color: #2E7D32;
+        }
+
+        .btn-nav {
+            background-color: #E3F2FD;
+            color: #1565C0;
+        }
+
+        /* Flight & Hotel Info */
+        .info-card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 15px;
+            margin-bottom: 15px;
+            box-shadow: var(--shadow);
+            border-left: 6px solid var(--secondary-color);
+        }
+
+        .info-card h3 {
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .flight-route {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #F9F9F9;
+            padding: 12px;
+            border-radius: 12px;
+            margin-top: 8px;
+        }
+
+        .airport {
+            text-align: center;
+        }
+
+        .airport .code {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--primary-dark);
+        }
+
+        .airport .time {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* Budget Section */
+        .budget-summary {
+            background: linear-gradient(135deg, #3AA6B9, #C1ECE4);
+            color: white;
+            border-radius: var(--border-radius);
+            padding: 15px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .budget-amount {
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin: 5px 0;
+        }
+
+        .budget-form {
+            background: white;
+            padding: 15px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 10px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #EEE;
+            border-radius: 10px;
+            outline: none;
+        }
+
+        .btn-add {
+            width: 100%;
+            padding: 10px;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .expense-list {
+            list-style: none;
+        }
+
+        .expense-item {
+            background: white;
+            padding: 12px 15px;
+            border-radius: 12px;
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        /* Weather Section */
+        .weather-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 10px;
+        }
+
+        .weather-card {
+            background: white;
+            padding: 15px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
+
+        .weather-icon {
+            font-size: 2rem;
+            margin: 8px 0;
+        }
+
+        /* Route Switcher for Day 7 */
+        .route-switcher {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .route-btn {
+            flex: 1;
+            padding: 8px;
+            border: 2px solid var(--secondary-color);
+            background: white;
+            color: var(--secondary-color);
+            border-radius: 10px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .route-btn.active {
+            background: var(--secondary-color);
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Banner -->
+    <header class="hero-banner">
+        <h1>2026 九州家族旅遊 🎌</h1>
+        <p><i class="fa-regular fa-calendar-days"></i> 10/26 (一) - 11/02 (一) • 8天7夜</p>
+    </header>
+
+    <!-- Navigation Tabs -->
+    <nav class="nav-tabs">
+        <button class="tab-btn active" onclick="switchTab('itinerary')">
+            <i class="fa-solid fa-map-location-dot"></i> 行程
+        </button>
+        <button class="tab-btn" onclick="switchTab('stay-flight')">
+            <i class="fa-solid fa-plane"></i> 班機/住宿
+        </button>
+        <button class="tab-btn" onclick="switchTab('weather')">
+            <i class="fa-solid fa-cloud-sun"></i> 天氣
+        </button>
+        <button class="tab-btn" onclick="switchTab('budget')">
+            <i class="fa-solid fa-wallet"></i> 記帳
+        </button>
+    </nav>
+
+    <div class="container">
+
+        <!-- TAB 1: 每日行程 -->
+        <section id="itinerary" class="tab-content active">
+            <!-- Day Selector -->
+            <div class="day-selector">
+                <div class="day-pill active" onclick="showDay(1)">Day 1<br><small>10/26</small></div>
+                <div class="day-pill" onclick="showDay(2)">Day 2<br><small>10/27</small></div>
+                <div class="day-pill" onclick="showDay(3)">Day 3<br><small>10/28</small></div>
+                <div class="day-pill" onclick="showDay(4)">Day 4<br><small>10/29</small></div>
+                <div class="day-pill" onclick="showDay(5)">Day 5<br><small>10/30</small></div>
+                <div class="day-pill" onclick="showDay(6)">Day 6<br><small>10/31</small></div>
+                <div class="day-pill" onclick="showDay(7)">Day 7<br><small>11/01</small></div>
+                <div class="day-pill" onclick="showDay(8)">Day 8<br><small>11/02</small></div>
+            </div>
+
+            <!-- DAY 1 -->
+            <div id="day-1" class="day-details">
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="card">
+                            <div class="card-header">
+                                <span class="time-badge">03:30</span>
+                                <span>🛫 機場報到</span>
+                            </div>
+                            <div class="location-title">桃園國際機場 第1航廈</div>
+                            <div class="card-body">搭乘 06:05 虎航 IT742 班機前往宮崎。</div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="card">
+                            <div class="card-header">
+                                <span class="time-badge">09:20 - 12:15</span>
+                                <span>🛬 抵達宮崎</span>
+                            </div>
+                            <div class="location-title">宮崎機場 ➔ 午餐</div>
+                            <div class="card-body">入境後享用午餐（待定），準備搭乘 JR。</div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="card">
+                            <div class="card-header">
+                                <span class="time-badge">12:15 - 16:21</span>
+                                <span>🚆 鐵道移動</span>
+                            </div>
+                            <div class="location-title">JR 移動至別府飯店</div>
+                            <div class="card-body">
+                                <ul>
+                                    <li>12:15 搭乘 JR 特急日輪 (宮崎 ➔ 大分 15:41)</li>
+                                    <li>15:50 轉乘 JR 日豐本線 (大分 ➔ 別府 16:03)</li>
+                                    <li>16:14 搭乘巴士5號月台至「別府塔前」步行3分鐘</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="card">
+                            <div class="card-header">
+                                <span class="time-badge">16:30+</span>
+                                <span>♨️ 飯店 Check-in</span>
+                            </div>
+                            <div class="location-title">美松大江亭海濱飯店</div>
+                            <div class="photo-placeholder" style="background-image: url('https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=600&q=80');">
+                                Seaside Hotel Mimatsu Oetei
+                            </div>
+                            <div class="card-body">
+                                飯店休息、享受溫泉設施。<br>
+                                <strong>晚餐：</strong> 飯店懷石料理 🍱
+                            </div>
+                            <div class="btn-group">
+                                <a href="https://maps.google.com/?q=Seaside+Hotel+Mimatsu+Oetei" target="_blank" class="btn-map"><i class="fa-solid fa-map-location-dot"></i> 開啟地圖</a>
+                                <a href="https://www.google.com/maps/dir/?api=1&destination=Seaside+Hotel+Mimatsu+Oetei" target="_blank" class="btn-nav"><i class="fa-solid fa-location-arrow"></i> 開始導航</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DAY 2 -->
+            <div id="day-2" class="day-details" style="display:none;">
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="card">
+                            <div class="card-header">
+                                <span class="time-badge">08:00</span>
+                                <span>🦁 親子野生動物園</span>
+                            </div>
+                            <div class="location-title">九州自然動物園 African Safari</div>
+                            <div class="photo-placeholder" style="background-image: url('https://images.unsplash.com/photo-1534567153574-2b12153a87f0?auto=format&fit=crop&w=600&q=80');">
+                                九州自然動物園
+                            </div>
+                            <div class="card-body">搭乘叢林巴士近距離餵食獅子、大象等野生動物！</div>
+                            <div class="btn-group">
+                                <a href="https://maps.google.com/?q=African+Safari+Beppu" target="_blank" class="btn-map"><i class="fa-solid fa-map-location-dot"></i> 地圖</a>
+                                <a href="https://www.google.com/maps/dir/?api=1&destination=African+Safari+Beppu" target="_blank" class="btn-nav"><i class="fa-solid fa-location-arrow"></i> 導航</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="card">
+                            <div class="card-header">
+                                <span class="time-badge">12:00 - 16:30</span>
+                                <span>♨️ 地獄巡禮</span>
+                            </div>
+                            <div class="location-title">午餐：地獄蒸 ➔ 別府地獄</div>
+                            <div class="card-body">
+                                <strong>必看前三選：</strong>
+                                <ul>
+                                    <li>🌊 海地獄 (夢幻湛藍)</li>
+                                    <li>🩸 血池地獄 (天然紅溫泉)</li>
+                                    <li>🤍 白池地獄 (青白溫泉)</li>
+                                </ul>
+                                <strong>親子加分：</strong> 鬼石坊主地獄 泥漿冒泡超有趣！
+                            </div>
+                            <div class="btn-group">
+                                <a href="https://maps.google.com/?q=Umi+Jigoku" target="_blank" class="btn-map"><i class="fa-solid fa-map-location-dot"></i> 地圖</a>
+                                <a href="https://www.google.com/maps/dir/?api=1&destination=Umi+Jigoku" target="_blank" class="btn-nav"><i class="fa-solid fa-location-arrow"></i> 導航</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="card">
+                            <div class="card-header">
+                                <span class="time-badge">17:30+</span>
+                                <span>🌃 夜景與美食</span>
+                            </div>
+                            <div class="location-title">十文字原展望台 ➔ 迴轉壽司 水天</div>
+                            <div class="card-body">俯瞰別府灣美麗夜景。<br><strong>晚餐：</strong> 當地知名高質感迴轉壽司「水天」。</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DAY 3 -->
+            <div id="day-3" class="day-details" style="display:none;">
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="card">
+                            <div class="card-header">
+                                <span class="time-badge">08:00 - 12:30</span>
+                                <span>🌋 壯麗火山巡禮</span>
+                            </div>
+                            <div class="location-title">阿蘇火山 ➔ 草千里 ➔ 阿蘇神社</div>
+                            <div class="photo-placeholder" style="background-image: url('https://images.unsplash.com/photo-1578632767115-351597cf2477?auto=format&fit=crop&w=600&q=80');">
+                                阿蘇火山 & 草千里
+                            </div>
+                            <div class="card-body">欣賞阿蘇火口壯觀氣勢與草千里廣闊綠原大自然美景。</div>
+                            <div class="btn-group">
+                                <a href="https://maps.google.com/?q=Kusasenri" target="_blank" class="btn-map"><i class="fa-solid fa-map-location-dot"></i> 地圖</a>
+                                <a href="https://www.google.com/maps/dir/?api=1&destination=Kusasenri" target="_blank" class="btn-nav"><i class="fa-solid fa-location-arrow"></i> 導航</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="card">
+                            <div class="card-header">
+                                <span class="time-badge">午餐備選</span>
+                                <span>🍱 阿蘇美食</span>
+                            </div>
+                            <div class="card-body">
+                                <ul>
+                                    <li>選項 A：あか牛丼専門店 ごとう屋阿蘇店 (招牌赤牛丼)</li>
+                                    <li>選項 B：ASO MILK FACTORY (手工披薩 & 漢堡)</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="card">
+                            <div class="card-header">
+                                <span class="time-badge">晚餐</span>
+                                <span>🥩 溫馨美饌</span>
+                            </div>
+                            <div class="location-title">日式燒肉饗宴（餐廳待定）</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DAY 4 -->
+            <div id="day-4" class="day-details" style="display:none;">
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="card">
+                            <div class="card-header">
+                                <span class="time-badge">07:58 - 09:06</span>
+                                <span>🚆 觀光列車</span>
+                            </div>
+                            <div class="location-title">別府站 ➔ 大分站 ➔ 由布院站</div>
+                            <div class="card-body">
+                                07:58 別府站搭乘 JR 日豐本線 (第2月台)<br>
+                                08:20 大分站轉乘 JR 久大本線「特急由布2號」(第7月台)
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="card">
+                            <div class="card-header">
+                                <span class="time-badge">09:10 - 15:30</span>
+                                <span>🍂 溫泉小鎮散策</span>
+                            </div>
+                            <div class="location-title">由布院湯之坪 ➔ 金鱗湖</div>
+                            <div class="photo-placeholder" style="background-image: url('https://images.unsplash.com/photo-1503899036084-c55cdd92da26?auto=format&fit=crop&w=600&q=80');">
+                                由布院金鱗湖
+                            </div>
+                            <div class="card-body">逛街吃小吃、欣賞金鱗湖夢幻湖光山色。<br><strong>午餐：</strong> 湯之坪街道自由享用當地美食。</div>
+                            <div class="btn-group">
+                                <a href="https://maps.google.com/?q=Kinrin+Lake" target="_blank" class="btn-map"><i class="fa-solid fa-map-location-dot"></i> 地圖</a>
+                                <a href="https://www.google.com/maps/dir/?api=1&destination=Kinrin+Lake" target="_blank" class="btn-nav"><i class="fa-solid fa-location-arrow"></i> 導航</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="card">
+                            <div class="card-header">
+                                <span class="time-badge">15:56 - 18:10</span>
+                                <span>🚄 前往福岡博多</span>
+                            </div>
+                            <div class="location-title">由布院站 (第5月台) ➔ 博多站</div>
+                            <div class="card-body">抵達博多 check-in 住宿。<br><strong>晚餐：</strong> 博多獨特文化「屋台」夜市小吃 🍜</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DAY 5 -->
+            <div id="day-5" class="day-details" style="display:none;">
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="card">
+                            <div class="card-header">
+                                <span class="time-badge">全天行程</span>
+                                <span>⛩️ 博多歷史與購物散步</span>
+                            </div>
+                            <div class="location-title">博多町家文化館 ➔ 櫛田神社 ➔ 上川端通商店街 ➔ 博多運河城</div>
+                            <div class="card-body">
+                                <ul>
+                                    <li><strong>櫛田神社：</strong> 推薦品嚐「櫛田茶屋」現烤紅豆麻糬 🍡</li>
+                                    <li><strong>午餐：</strong> 上川端通商店街自由享用</li>
+                                    <li><strong>購物：</strong> 博多運河城複合式購物中心</li>
+                                </ul>
+                            </div>
+                            <div class="btn-group">
+                                <a href="https://maps.google.com/?q=Kushida+Shrine" target="_blank" class="btn-map"><i class="fa-solid fa-map-location-dot"></i> 地圖</a>
+                                <a href="https://www.google.com/maps/dir/?api=1&destination=Kushida+Shrine" target="_blank" class="btn-nav"><i class="fa-solid fa-location-arrow"></i> 導航</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="card">
+                            <div class="card-header">
+                                <span class="time-badge">晚餐時段</span>
+                                <span>🍜 一蘭拉麵總店</span>
+                            </div>
+                            <div class="location-title">一蘭拉麵 中洲總店</div>
+                            <div class="card-body">
+                                體驗整棟拉麵總店，<strong>20:00 - 20:15</strong> 會有精彩陽台表演喔！
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DAY 6 -->
+            <div id="day-6" class="day-details" style="display:none;">
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="card">
+                            <div class="card-header">
+                                <span class="time-badge">上午</span>
+                                <span>🏰 綠意公園漫步</span>
+                            </div>
+                            <div class="location-title">福岡城跡 ➔ 舞鶴公園</div>
+                            <div class="card-body">漫步於福岡城遺跡與綠意盎然的舞鶴公園。</div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="card">
+                            <div class="card-header">
+                                <span class="time-badge">午餐 12:00</span>
+                                <span>🍲 福岡必吃水炊鍋</span>
+                            </div>
+                            <div class="location-title">博多水炊き専門 橙</div>
+                            <div class="card-body">超人氣濃郁雞湯水炊鍋美味無比。</div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="card">
+                            <div class="card-header">
+                                <span class="time-badge">晚餐</span>
+                                <span>🍲 美味壽喜燒</span>
+                            </div>
+                            <div class="location-title">日式壽喜燒饗宴 (餐廳待定)</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DAY 7 -->
+            <div id="day-7" class="day-details" style="display:none;">
+                <div class="route-switcher">
+                    <button class="route-btn active" onclick="switchRoute('r1')">路線 1：水族館 (推薦親子)</button>
+                    <button class="route-btn" onclick="switchRoute('r2')">路線 2：網美海岸風光</button>
+                </div>
+
+                <div id="route-1" class="timeline">
+                    <div class="timeline-item">
+                        <div class="card">
+                            <div class="card-header">
+                                <span class="time-badge">路線 1</span>
+                                <span>🐬 海洋世界</span>
+                            </div>
+                            <div class="location-title">MARINE WORLD 海之中道水族館</div>
+                            <div class="card-body">欣賞精彩的海豚海獅表演與大水槽海洋生物。</div>
+                            <div class="btn-group">
+                                <a href="https://maps.google.com/?q=Marine+World+Uminonakamichi" target="_blank" class="btn-map"><i class="fa-solid fa-map-location-dot"></i> 地圖</a>
+                                <a href="https://www.google.com/maps/dir/?api=1&destination=Marine+World+Uminonakamichi" target="_blank" class="btn-nav"><i class="fa-solid fa-location-arrow"></i> 導航</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="route-2" class="timeline" style="display:none;">
+                    <div class="timeline-item">
+                        <div class="card">
+                            <div class="card-header">
+                                <span class="time-badge">路線 2</span>
+                                <span>⛩️ 糸島景緻</span>
+                            </div>
+                            <div class="location-title">夫婦岩 ➔ 白色鳥居 ➔ 海邊海景咖啡廳</div>
+                            <div class="card-body">糸島夢幻海岸景色與超好拍白色鳥居。</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline" style="margin-top:-10px;">
+                    <div class="timeline-item">
+                        <div class="card">
+                            <div class="card-header">
+                                <span class="time-badge">晚餐</span>
+                                <span>🍻 歡樂居酒屋</span>
+                            </div>
+                            <div class="location-title">博多在地居酒屋 (美味乾杯)</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DAY 8 -->
+            <div id="day-8" class="day-details" style="display:none;">
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="card">
+                            <div class="card-header">
+                                <span class="time-badge">07:44 - 08:15</span>
+                                <span>🚌 前往福岡機場</span>
+                            </div>
+                            <div class="card-body">
+                                <ul>
+                                    <li>07:44 博多站搭乘地鐵空港線至「福岡機場站」</li>
+                                    <li>07:50 國內線航廈搭乘免費接駁車前往國際線航廈</li>
+                                    <li>08:15 抵達櫃檯 Check-in 報到</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="card">
+                            <div class="card-header">
+                                <span class="time-badge">10:55 - 12:40</span>
+                                <span>🛩️ 平安賦歸</span>
+                            </div>
+                            <div class="location-title">10:55 登機 (IT241) ➔ 12:40 桃園國際機場</div>
+                            <div class="card-body">帶著滿滿溫馨美妙的九州回憶溫暖回家～ ❤️</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 2: 航班與住宿 -->
+        <section id="stay-flight" class="tab-content">
+            <!-- 航班 -->
+            <div class="info-card">
+                <h3><i class="fa-solid fa-plane-departure"></i> 去程航班 (10/26 一)</h3>
+                <div class="flight-route">
+                    <div class="airport">
+                        <div class="code">TPE</div>
+                        <div>桃園 T1</div>
+                        <div class="time">06:05 出發</div>
+                    </div>
+                    <div style="text-align:center; color: var(--primary-color);">
+                        <small>虎航 IT742</small><br>
+                        <i class="fa-solid fa-arrow-right-long"></i>
+                    </div>
+                    <div class="airport">
+                        <div class="code">KMI</div>
+                        <div>宮崎機場</div>
+                        <div class="time">09:20 抵達</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-card">
+                <h3><i class="fa-solid fa-plane-arrival"></i> 回程航班 (11/02 一)</h3>
+                <div class="flight-route">
+                    <div class="airport">
+                        <div class="code">FUK</div>
+                        <div>福岡國際線</div>
+                        <div class="time">10:55 出發</div>
+                    </div>
+                    <div style="text-align:center; color: var(--primary-color);">
+                        <small>虎航 IT241</small><br>
+                        <i class="fa-solid fa-arrow-right-long"></i>
+                    </div>
+                    <div class="airport">
+                        <div class="code">TPE</div>
+                        <div>桃園 T1</div>
+                        <div class="time">12:40 抵達</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 住宿 -->
+            <div class="info-card">
+                <h3><i class="fa-solid fa-hotel"></i> 10/26 - 10/27 (1晚)</h3>
+                <strong>美松大江亭海濱飯店</strong><br>
+                <small>Seaside Hotel Mimatsu Oetei</small>
+                <div class="btn-group" style="margin-top:8px;">
+                    <a href="https://maps.google.com/?q=Seaside+Hotel+Mimatsu+Oetei" target="_blank" class="btn-map"><i class="fa-solid fa-map-location-dot"></i> 地圖</a>
+                </div>
+            </div>
+
+            <div class="info-card">
+                <h3><i class="fa-solid fa-house"></i> 10/27 - 10/29 (2晚)</h3>
+                <strong>別府 Airbnb</strong><br>
+                <small>874-0944 大分縣別府市元町 6-11</small>
+                <div class="btn-group" style="margin-top:8px;">
+                    <a href="https://maps.google.com/?q=6-11+Motomachi,+Beppu,+Oita+874-0944" target="_blank" class="btn-map"><i class="fa-solid fa-map-location-dot"></i> 地圖</a>
+                </div>
+            </div>
+
+            <div class="info-card">
+                <h3><i class="fa-solid fa-house"></i> 10/29 - 11/02 (4晚)</h3>
+                <strong>福岡 Airbnb</strong><br>
+                <small>810-0004 福岡縣福岡市中央區渡邊通 2-2-6</small>
+                <div class="btn-group" style="margin-top:8px;">
+                    <a href="https://maps.google.com/?q=2-chome-2-6+Watanabedori,+Chuo+Ward,+Fukuoka" target="_blank" class="btn-map"><i class="fa-solid fa-map-location-dot"></i> 地圖</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 3: 每日天氣預報 -->
+        <section id="weather" class="tab-content">
+            <div class="weather-grid">
+                <div class="weather-card">
+                    <h4>10/26 (一)</h4>
+                    <div class="weather-icon">☀️</div>
+                    <p>宮崎/別府</p>
+                    <strong>21°C / 14°C</strong>
+                </div>
+                <div class="weather-card">
+                    <h4>10/27 (二)</h4>
+                    <div class="weather-icon">🌤️</div>
+                    <p>別府</p>
+                    <strong>20°C / 13°C</strong>
+                </div>
+                <div class="weather-card">
+                    <h4>10/28 (三)</h4>
+                    <div class="weather-icon">🌤️</div>
+                    <p>阿蘇</p>
+                    <strong>17°C / 8°C</strong>
+                </div>
+                <div class="weather-card">
+                    <h4>10/29 (四)</h4>
+                    <div class="weather-icon">☁️</div>
+                    <p>由布院/博多</p>
+                    <strong>19°C / 11°C</strong>
+                </div>
+                <div class="weather-card">
+                    <h4>10/30 (五)</h4>
+                    <div class="weather-icon">☀️</div>
+                    <p>福岡</p>
+                    <strong>20°C / 12°C</strong>
+                </div>
+                <div class="weather-card">
+                    <h4>10/31 (六)</h4>
+                    <div class="weather-icon">🌤️</div>
+                    <p>福岡</p>
+                    <strong>20°C / 12°C</strong>
+                </div>
+                <div class="weather-card">
+                    <h4>11/01 (日)</h4>
+                    <div class="weather-icon">☀️</div>
+                    <p>海之中道/糸島</p>
+                    <strong>21°C / 13°C</strong>
+                </div>
+                <div class="weather-card">
+                    <h4>11/02 (一)</h4>
+                    <div class="weather-icon">✈️</div>
+                    <p>福岡返台</p>
+                    <strong>21°C / 13°C</strong>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 4: 預算與記帳器 -->
+        <section id="budget" class="tab-content">
+            <div class="budget-summary">
+                <span>目前累計花費</span>
+                <div class="budget-amount">¥ <span id="total-spent">0</span></div>
+            </div>
+
+            <div class="budget-form">
+                <div class="form-group">
+                    <label>項目名稱</label>
+                    <input type="text" id="item-name" class="form-control" placeholder="例如：水族館門票、迴轉壽司">
+                </div>
+                <div class="form-group">
+                    <label>金額 (日圓 ¥)</label>
+                    <input type="number" id="item-amount" class="form-control" placeholder="例如：3500">
+                </div>
+                <button class="btn-add" onclick="addExpense()"><i class="fa-solid fa-plus"></i> 新增支出紀錄</button>
+            </div>
+
+            <ul class="expense-list" id="expense-list">
+                <!-- 記帳列表將顯示於此 -->
+            </ul>
+        </section>
+
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // 切換主頁籤
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+            
+            document.getElementById(tabId).classList.add('active');
+            event.currentTarget.classList.add('active');
+        }
+
+        // 切換每日行程
+        function showDay(dayNum) {
+            document.querySelectorAll('.day-details').forEach(el => el.style.display = 'none');
+            document.querySelectorAll('.day-pill').forEach(el => el.classList.remove('active'));
+            
+            document.getElementById('day-' + dayNum).style.display = 'block';
+            event.currentTarget.classList.add('active');
+        }
+
+        // 切換 Day 7 路線
+        function switchRoute(routeId) {
+            document.getElementById('route-1').style.display = routeId === 'r1' ? 'block' : 'none';
+            document.getElementById('route-2').style.display = routeId === 'r2' ? 'block' : 'none';
+            
+            const btns = document.querySelectorAll('.route-btn');
+            btns[0].classList.toggle('active', routeId === 'r1');
+            btns[1].classList.toggle('active', routeId === 'r2');
+        }
+
+        // 簡易記帳功能
+        let expenses = JSON.parse(localStorage.getItem('kyushu_expenses')) || [];
+
+        function renderExpenses() {
+            const listEl = document.getElementById('expense-list');
+            const totalEl = document.getElementById('total-spent');
+            listEl.innerHTML = '';
+            let total = 0;
+
+            expenses.forEach((item, index) => {
+                total += item.amount;
+                const li = document.createElement('li');
+                li.className = 'expense-item';
+                li.innerHTML = `
+                    <div>
+                        <strong>${item.name}</strong>
+                    </div>
+                    <div>
+                        <span style="color:#FF7083; font-weight:bold; margin-right:10px;">¥ ${item.amount.toLocaleString()}</span>
+                        <i class="fa-solid fa-trash-can" style="color:#aaa; cursor:pointer;" onclick="deleteExpense(${index})"></i>
+                    </div>
+                `;
+                listEl.appendChild(li);
+            });
+
+            totalEl.innerText = total.toLocaleString();
+            localStorage.setItem('kyushu_expenses', JSON.stringify(expenses));
+        }
+
+        function addExpense() {
+            const name = document.getElementById('item-name').value.trim();
+            const amount = parseFloat(document.getElementById('item-amount').value);
+
+            if (name && !isNaN(amount) && amount > 0) {
+                expenses.push({ name, amount });
+                document.getElementById('item-name').value = '';
+                document.getElementById('item-amount').value = '';
+                renderExpenses();
+            } else {
+                alert('請輸入有效的項目名稱與金額！');
+            }
+        }
+
+        function deleteExpense(index) {
+            expenses.splice(index, 1);
+            renderExpenses();
+        }
+
+        // 初始化渲染記帳
+        renderExpenses();
+    </script>
+</body>
+</html>
